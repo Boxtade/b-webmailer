@@ -1,0 +1,30 @@
+var server = require('../app');
+var fs = require('fs');
+
+var filename;
+
+var start = function(fn,callback){
+    filename = fn;
+    fs.exists(filename,function(isExist) {
+        if(isExist){
+            setup = JSON.parse(fs.readFileSync(filename));
+            callback(setup);
+        }
+        else{throw new Error('Nothing setup file JSON.');}
+    });
+};
+
+var setup = function(s){
+    var option = {
+        port:s.port,
+        setting:filename,
+        to:s.to,
+        subject: s.subject,
+        template: s.template
+
+    }
+
+    server.start(option);
+}
+
+start("mail.json",setup)
