@@ -1,0 +1,14 @@
+{
+    "transport": "SMTP",
+    "options": {
+        "service": "Mailgun",
+            "auth": {
+            "user": "admin@site.com",
+                "pass": "password"
+        }
+    },
+    "from":"me",
+    "to":"you@site.com",
+    "subject": "subject",
+    "template":"./template/template.html"
+}
